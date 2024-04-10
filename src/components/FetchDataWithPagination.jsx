@@ -7,16 +7,16 @@ const FetchDataWithPagination = () => {
   const [items, setItems] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [newItemName, setNewItemName] = useState('');
-  const itemsPerPage = 10; // Number of items to show per page
+  const itemsPerPage = 10; 
 
   useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array to run effect only once on component mount
+  }, []); 
 
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/items');
-      setItems(response.data); // Assuming API response is an array of items
+      setItems(response.data); 
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
@@ -29,8 +29,8 @@ const FetchDataWithPagination = () => {
   const handleAddItem = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/items', { name: newItemName });
-      setItems([...items, response.data]); // Add new item to local state
-      setNewItemName(''); // Clear input field
+      setItems([...items, response.data]); 
+      setNewItemName(''); 
     } catch (error) {
       console.error('Error adding item: ', error);
     }
@@ -40,7 +40,7 @@ const FetchDataWithPagination = () => {
     try {
       await axios.delete(`http://localhost:5000/api/items/${id}`);
       const updatedItems = items.filter((item) => item.id !== id);
-      setItems(updatedItems); // Update local state after deletion
+      setItems(updatedItems); 
     } catch (error) {
       console.error('Error deleting item: ', error);
     }
